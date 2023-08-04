@@ -4,10 +4,30 @@ import { RouterLink, RouterView } from 'vue-router'
 </script>
 
 <template>
-  <RouterView />
+  <header class="container">
+    <RouterLink to="/">Home</RouterLink>
+    <RouterLink to="/about">About</RouterLink>
+  </header>
+
+  <RouterView v-slot="{ Component }">
+    <transition name="route" mode="out-in">
+      <component :is="Component" />
+    </transition>
+  </RouterView>  
 </template>
 
 <style scoped>
+.container {
+  max-width: 300px;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+
+.container a {
+  margin-right: 5px;
+}
+
+
 header {
   line-height: 1.5;
   max-height: 100vh;
@@ -43,6 +63,24 @@ nav a:first-of-type {
   border: 0;
 }
 
+.route-enter-from, .route-leave-to {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+.route-enter-to, .route-leave-from {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.route-enter-active {
+  transition: all 0.150s ease;  
+}
+
+.route-leave-active {
+  transition: all 0.150s ease;  
+}
+
 @media (min-width: 1024px) {
   header {
     display: flex;
@@ -68,5 +106,8 @@ nav a:first-of-type {
     padding: 1rem 0;
     margin-top: 1rem;
   }
+
+
+  
 }
 </style>

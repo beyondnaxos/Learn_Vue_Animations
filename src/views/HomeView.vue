@@ -14,6 +14,10 @@ const addInvitee = () => {
   nameInput.value = ''
 }
 
+const removeInvitee = (index) => {
+   names.value.splice(index, 1)
+}
+
 
 </script>
 
@@ -21,6 +25,7 @@ const addInvitee = () => {
   <main>
 
     <div class="container">
+      <h1>Add an invitee</h1>
       <input 
         v-model="nameInput"
         type="text" 
@@ -29,7 +34,11 @@ const addInvitee = () => {
       >
       <ul>
         <TransitionGroup name="invitees">
-          <li v-for="name in names" :key="name">{{name}}</li>
+          <li 
+          v-for="name in names" 
+          :key="name"
+          @click="removeInvitee(index)"   
+          >{{name}}</li>
         </TransitionGroup>
    
       </ul>
@@ -57,6 +66,10 @@ main {
   padding: 10px;
   margin-bottom: 20px;
   box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.12); 
+}
+
+div h1 {
+  margin-bottom: 20px;
 }
 
 ul {
