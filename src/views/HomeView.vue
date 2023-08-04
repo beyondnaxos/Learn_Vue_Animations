@@ -1,15 +1,18 @@
 <script setup>
 import {ref} from 'vue'
 
-const showText = ref(false)
+const showGreet = ref(true)
 </script>
 
 <template>
   <main>
-      <Transition name="fade">
-        <h1 v-if="showText">Hello world</h1>
-      </Transition>
-      <button @click="showText = !showText">Toogle</button>
+      <div class="container">
+        <Transition name="fade">
+          <h1 v-if="showGreet">Hello World</h1>
+          <h1 v-else>Goodbye World</h1>
+        </Transition>
+      </div>
+      <button @click="showGreet = !showGreet">Toogle</button>
   </main>
 </template>
 
@@ -43,6 +46,18 @@ const showText = ref(false)
 .fade-leave-active {
   transition: all 0.5s ease;
 } 
+
+.container {
+  position: relative;
+}
+
+h1 {
+  position: absolute;
+}
+
+button {
+  margin-top: 50px;
+}
 
 
 </style>
