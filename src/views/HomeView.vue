@@ -6,7 +6,7 @@ const showText = ref(false)
 
 <template>
   <main>
-      <Transition name="color">
+      <Transition name="fade">
         <h1 v-if="showText">Hello world</h1>
       </Transition>
       <button @click="showText = !showText">Toogle</button>
@@ -14,18 +14,34 @@ const showText = ref(false)
 </template>
 
 <style  scoped>
-.color-enter-from {
-  background-color: indianred; 
-  color: white;
+/* Début de l'animation entry */
+.fade-enter-from {
+ opacity: 0;
 }
 
-.color-enter-to {
-  background-color: lightsalmon; 
-  color: black; 
+/* Fin de l'animation entry*/
+.fade-enter-to {
+  opacity: 1;   
 }
 
-.color-enter-active {
-  transition: all 1s;
+/* setup de l'animation entry */
+.fade-enter-active {
+  transition: all 0.5s ease;
+} 
+
+/* Début de l'animation leave */  
+.fade-leave-from {
+ opacity: 1;
+}
+
+/* Fin de l'animation leave */
+.fade-leave-to {
+  opacity: 0;   
+}
+
+/* setup de l'animation leave */  
+.fade-leave-active {
+  transition: all 0.5s ease;
 } 
 
 
