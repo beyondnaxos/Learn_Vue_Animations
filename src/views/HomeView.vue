@@ -14,6 +14,7 @@ const addInvitee = () => {
   nameInput.value = ''
 }
 
+
 </script>
 
 <template>
@@ -27,7 +28,9 @@ const addInvitee = () => {
         @keypress.enter="addInvitee" 
       >
       <ul>
-        <li v-for="name in names" :key="name">{{name}}</li>
+        <TransitionGroup name="invitees">
+          <li v-for="name in names" :key="name">{{name}}</li>
+        </TransitionGroup>
    
       </ul>
     </div>
@@ -74,6 +77,27 @@ li {
   cursor: pointer;
   
 }
+
+/* TRANSITION GRP */
+.invitees-enter-from {
+ opacity: 0;
+ transform: scale(0.5);
+} 
+
+.invitees-enter-to {
+  opacity: 1;   
+  transform: scale(1);
+} 
+
+.invitees-enter-active {
+  transition: all 0.250s ease;
+}
+
+.invitees-move {
+  transition: transform 0.250s ease;
+}
+
+
 </style>
 
 
